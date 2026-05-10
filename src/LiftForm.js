@@ -224,10 +224,10 @@ export default function LiftForm() {
                     <p className={styles.pageSubtitle}>Lift Quotation & Specification Form</p>
                 </div>
 
-                <button className={styles.btnExport} onClick={exportPDF}>
+                {/* <button className={styles.btnExport} onClick={exportPDF}>
                     <DownloadIcon />
                     Export PDF
-                </button>
+                </button> */}
             </div>
 
             <Section title="Client Information">
