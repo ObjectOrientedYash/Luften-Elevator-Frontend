@@ -555,9 +555,9 @@ Selected : ${form.operations}`
                 <button className={styles.btnReset} onClick={() => setForm(INIT)}>
                     Reset Form
                 </button>
-                <button className={styles.btnExport} onClick={exportPDF}>
+                {/* <button className={styles.btnExport} onClick={exportPDF}>
                     <DownloadIcon /> Download PDF Quotation
-                </button>
+                </button> */}
             </div>
         </div>
     );
