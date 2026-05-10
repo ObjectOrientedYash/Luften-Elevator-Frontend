@@ -1,0 +1,266 @@
+/* ── wrapper ── */
+.wrapper {
+  padding-bottom: 48px;
+}
+
+/* ── page header ── */
+.pageHeader {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2563a8 100%);
+  border-radius: 12px;
+  padding: 22px 26px;
+  margin-bottom: 26px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.pageTitle {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.pageSubtitle {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 3px;
+}
+
+/* ── section ── */
+.section {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.sectionTitle {
+  background: #1e3a5f;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+}
+
+.sectionBody {
+  border: 1px solid #c8d8e8;
+  border-top: none;
+  padding: 18px;
+  background: #ffffff;
+}
+
+/* ── field grid ── */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.fieldFull {
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fieldHalf {
+  flex: 0 0 calc(50% - 7px);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+@media (max-width: 600px) {
+  .fieldHalf {
+    flex: 0 0 100%;
+  }
+}
+
+.fieldLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b7a90;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── inputs / selects ── */
+.sectionBody input,
+.sectionBody select {
+  width: 100%;
+  padding: 8px 11px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 13.5px;
+  background: #fafbfc;
+  color: #1a202c;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+  font-family: inherit;
+}
+
+.sectionBody input:focus,
+.sectionBody select:focus {
+  border-color: #2563a8;
+  box-shadow: 0 0 0 3px rgba(37, 99, 168, 0.15);
+  background: #fff;
+}
+
+/* ── checkbox grid ── */
+.checkGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 24px;
+}
+
+@media (max-width: 520px) {
+  .checkGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.checkItem {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13.5px;
+  cursor: pointer;
+  padding: 6px 0;
+  user-select: none;
+  color: #2d3748;
+}
+
+.checkItem input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  accent-color: #1e3a5f;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ── pricing table ── */
+.tableWrap {
+  overflow-x: auto;
+}
+
+.pricingTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 720px;
+}
+
+.pricingTable thead tr {
+  background: #1e3a5f;
+  color: white;
+}
+
+.pricingTable th {
+  padding: 10px 11px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 11.5px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.pricingTable tbody tr {
+  background: #f7fafd;
+}
+
+.pricingTable td {
+  padding: 7px 9px;
+  vertical-align: middle;
+}
+
+.pricingTable tbody input {
+  padding: 7px 10px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 13px;
+  background: #fff;
+  color: #1a202c;
+  font-family: inherit;
+  outline: none;
+  width: 100%;
+}
+
+.pricingTable tbody input:focus {
+  border-color: #2563a8;
+  box-shadow: 0 0 0 3px rgba(37, 99, 168, 0.12);
+}
+
+.srNo {
+  font-weight: 600;
+  color: #6b7a90;
+  text-align: center;
+}
+
+.autoCell {
+  font-weight: 600;
+  color: #1e3a5f;
+  white-space: nowrap;
+}
+
+.totalCell {
+  font-weight: 700;
+  color: #1e3a5f;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.note {
+  margin-top: 10px;
+  font-size: 11.5px;
+  color: #8898aa;
+}
+
+/* ── footer buttons ── */
+.footerBtns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.btnReset {
+  background: #edf2f7;
+  color: #2d3748;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  padding: 11px 24px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.btnReset:hover {
+  background: #e2e8f0;
+}
+
+.btnExport {
+  background: #1e3a5f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 26px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.btnExport:hover {
+  background: #2563a8;
+}
