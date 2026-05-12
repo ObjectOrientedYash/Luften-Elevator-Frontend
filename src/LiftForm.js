@@ -70,7 +70,8 @@ const INIT = {
     basicCost: '',
     taxesPer: '',
     costWithTax: '',
-    totalAmount: ''
+    totalAmount: '',
+    note: ''
 };
 
 export default function LiftForm() {
@@ -135,7 +136,16 @@ export default function LiftForm() {
         const labelW = 90;
         const valueW = 100;
 
+        const checkPage = height => {
+            if (y + height > 280) {
+                doc.addPage();
+                y = 15;
+            }
+        };
+
         const drawSection = title => {
+            checkPage(15);
+
             doc.setFillColor(220, 220, 235);
 
             doc.rect(margin, y, tableWidth, rowHeight, 'FD');
@@ -157,6 +167,8 @@ export default function LiftForm() {
 
             const dynamicHeight = Math.max(rowHeight, lines * 5 + 3);
 
+            checkPage(dynamicHeight);
+
             doc.rect(margin, y, labelW, dynamicHeight);
 
             doc.rect(margin + labelW, y, valueW, dynamicHeight);
@@ -172,6 +184,8 @@ export default function LiftForm() {
             y += dynamicHeight;
         };
 
+        drawSection('Client Information');
+
         drawRow('Date', form.date);
         drawRow('Client Name', form.clientName);
         drawRow('Contact Name', form.contactName);
@@ -179,7 +193,7 @@ export default function LiftForm() {
         drawRow('Project Name', form.projectName);
         drawRow('Project Address', form.projectAddress);
 
-        y += 4;
+        drawSection('A. Lift Configuration');
 
         drawRow('Group', form.group);
         drawRow('Lift Type', form.liftType);
@@ -195,16 +209,72 @@ export default function LiftForm() {
         drawSection('B. Civil Dimensions');
 
         drawRow('Door Width (mm)', form.doorWidth);
-
         drawRow('Door Height (mm)', form.doorHeight);
-
         drawRow('Shaft Width (mm)', form.shaftWidth);
-
         drawRow('Shaft Depth (mm)', form.shaftDepth);
-
         drawRow('Shaft Details', form.shaftDetails);
 
-        doc.save('Luften_Lift_Quotation.pdf');
+        drawSection('C. Car & Landing Details');
+
+        drawRow('Car Door Type', form.carDoorType);
+        drawRow('Car Door Finish', form.carDoorFinish);
+        drawRow('Landing Door Type', form.landingDoorType);
+
+        drawRow('Landing Door Finish', form.landingDoorFinish);
+
+        drawRow('Door Frame Location', form.doorFrameLocation);
+
+        drawRow('Car Panels', form.carPanels);
+
+        drawRow('False Ceiling', form.falseCeiling);
+
+        drawRow('Car Ventilation', form.carVentilation);
+
+        drawRow('Flooring', form.flooring);
+
+        drawRow('Handrail', form.handrail);
+
+        drawRow('Handrail Location', form.handrailLocation);
+
+        drawRow('LOP and COP', form.lopCop);
+
+        drawRow('Display In COP', form.displayCop);
+
+        drawSection('D. Features');
+
+        drawRow('Auto Rescue Device', form.autoRescue ? 'YES' : 'NO');
+
+        drawRow('Overload', form.overload ? 'YES' : 'NO');
+
+        drawRow('On / Off Key', form.onOffKey ? 'YES' : 'NO');
+
+        drawRow('Mobile Operated', form.mobileOperated ? 'YES' : 'NO');
+
+        drawRow('RFID / Fingerprint', form.rfid ? 'YES' : 'NO');
+
+        drawRow('Emergency 5 Call', form.emergency5call ? 'YES' : 'NO');
+
+        drawRow('Site Readiness', form.siteReadiness ? 'YES' : 'NO');
+
+        drawRow('Logo', form.logo ? 'YES' : 'NO');
+
+        drawSection('E. Pricing Details');
+
+        drawRow('Lift Description', form.liftDesc);
+
+        drawRow('Basic Cost', form.basicCost);
+
+        drawRow('Taxes', form.taxesPer);
+
+        drawRow('Cost With Tax', form.costWithTax);
+
+        drawRow('Total Amount', form.totalAmount);
+
+        drawSection('Notes');
+
+        drawRow('Additional Notes', form.note);
+
+        doc.save(`${form.projectName || 'pdf'}.pdf`);
     };
 
     const fmt = n =>
@@ -322,6 +392,102 @@ export default function LiftForm() {
                         <input placeholder="Yes / No / Top" value={form.machineRoom} onChange={set('machineRoom')} />
                     </Field>
                 </div>
+            </Section>
+
+            <Section title="B. Civil Dimensions">
+                <div className={styles.grid}>
+                    <Field label="Door Width (mm)" half>
+                        <input type="number" placeholder="Enter door width" value={form.doorWidth} onChange={set('doorWidth')} />
+                    </Field>
+
+                    <Field label="Door Height (mm)" half>
+                        <input type="number" placeholder="Enter door height" value={form.doorHeight} onChange={set('doorHeight')} />
+                    </Field>
+
+                    <Field label="Shaft Width (mm)" half>
+                        <input placeholder="Enter shaft width" value={form.shaftWidth} onChange={set('shaftWidth')} />
+                    </Field>
+
+                    <Field label="Shaft Depth (mm)" half>
+                        <input placeholder="Enter shaft depth" value={form.shaftDepth} onChange={set('shaftDepth')} />
+                    </Field>
+
+                    <Field label="Shaft Details">
+                        <select value={form.shaftDetails} onChange={set('shaftDetails')}>
+                            <option value="">Select Shaft Details</option>
+
+                            <option>RCC</option>
+                            <option>M.S Structure</option>
+                            <option>9-inch Brick Wall</option>
+
+                            <option>RCC / M.S Structure</option>
+
+                            <option>RCC / M.S Structure / 9-inch Brick Wall</option>
+                        </select>
+                    </Field>
+                </div>
+            </Section>
+
+            <Section title="C. Car & Landing Details">
+                <div className={styles.grid}>
+                    <Field label="Car Door Type" half>
+                        <input placeholder="Enter car door type" value={form.carDoorType} onChange={set('carDoorType')} />
+                    </Field>
+
+                    <Field label="Car Door Finish" half>
+                        <input placeholder="Enter car door finish" value={form.carDoorFinish} onChange={set('carDoorFinish')} />
+                    </Field>
+
+                    <Field label="Landing Door Type" half>
+                        <input placeholder="Enter landing door type" value={form.landingDoorType} onChange={set('landingDoorType')} />
+                    </Field>
+
+                    <Field label="Landing Door Finish" half>
+                        <input placeholder="Enter landing door finish" value={form.landingDoorFinish} onChange={set('landingDoorFinish')} />
+                    </Field>
+
+                    <Field label="Door Frame Location" half>
+                        <input placeholder="Enter frame location" value={form.doorFrameLocation} onChange={set('doorFrameLocation')} />
+                    </Field>
+
+                    <Field label="Car Panels" half>
+                        <input placeholder="Enter car panels" value={form.carPanels} onChange={set('carPanels')} />
+                    </Field>
+
+                    <Field label="False Ceiling" half>
+                        <input placeholder="Enter false ceiling" value={form.falseCeiling} onChange={set('falseCeiling')} />
+                    </Field>
+
+                    <Field label="Car Ventilation" half>
+                        <input placeholder="Enter ventilation" value={form.carVentilation} onChange={set('carVentilation')} />
+                    </Field>
+
+                    <Field label="Flooring" half>
+                        <input placeholder="Enter flooring" value={form.flooring} onChange={set('flooring')} />
+                    </Field>
+
+                    <Field label="Handrail" half>
+                        <input placeholder="Enter handrail" value={form.handrail} onChange={set('handrail')} />
+                    </Field>
+
+                    <Field label="Handrail Location" half>
+                        <input placeholder="Enter handrail location" value={form.handrailLocation} onChange={set('handrailLocation')} />
+                    </Field>
+
+                    <Field label="LOP and COP" half>
+                        <input placeholder="Enter LOP and COP" value={form.lopCop} onChange={set('lopCop')} />
+                    </Field>
+
+                    <Field label="Display In COP" half>
+                        <input placeholder="Enter display type" value={form.displayCop} onChange={set('displayCop')} />
+                    </Field>
+                </div>
+            </Section>
+
+            <Section title="Notes">
+                <Field label="Additional Notes">
+                    <textarea rows={5} placeholder="Enter notes here..." value={form.note} onChange={set('note')} />
+                </Field>
             </Section>
 
             <div className={styles.footerBtns}>
